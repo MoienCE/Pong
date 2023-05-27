@@ -14,11 +14,13 @@ public class Player implements GameObject{
 
     public Player(boolean isPlayer2) {
         if (isPlayer2) {
-            this.xPos = GlobalConstants.COMPUTER_FIRST_POS_X;
-            this.yPos = GlobalConstants.COMPUTER_FIRST_POS_Y;
+            this.xPos = GlobalConstants.CANVAS_WIDTH - 30;
+            this.yPos = (GlobalConstants.CANVAS_HEIGHT / 2.0) -
+                    PLAYER_HEIGHT / 2.0;
         } else {
-            this.xPos = GlobalConstants.PLAYER_FIRST_POS_X;
-            this.yPos = GlobalConstants.PLAYER_FIRST_POS_Y;
+            this.xPos = 30;
+            this.yPos = (GlobalConstants.CANVAS_HEIGHT / 2.0) -
+                    PLAYER_HEIGHT / 2.0;
         }
     }
 

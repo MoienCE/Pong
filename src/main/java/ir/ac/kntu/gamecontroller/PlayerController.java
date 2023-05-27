@@ -18,6 +18,7 @@ public class PlayerController implements InputManager {
     @Override
     public void handlePlayerMovements(KeyCode keyCode,
                                       Player player1, Player player2) {
+        System.out.println(keyCode);
         if (keyCode == KeyCode.W) {
             player1.move(10, Direction.UP);
         }

@@ -19,6 +19,7 @@ import javafx.util.Duration;
 
 
 import java.util.Random;
+import java.util.Scanner;
 
 import static ir.ac.kntu.constants.GlobalConstants.*;
 
@@ -32,6 +33,12 @@ public class Game extends Application {
     private int player2Score = 0;
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("window width: ");
+        GlobalConstants.setCanvasWidth(Integer.parseInt(scanner.nextLine()));
+        System.out.print("window height: ");
+        GlobalConstants.setCanvasHeight(Integer.parseInt(scanner.nextLine()));
+
         player1 = new Player(false);
         player2 = new Player(true);
         ball = new Ball(1, 1);
@@ -64,11 +71,12 @@ public class Game extends Application {
 
             ball.draw(gc);
         } else {
-            gc.setFont(Font.font(50));
+            gc.setFont(Font.font(CANVAS_WIDTH / 30.0));
             gc.setFill(Color.DARKBLUE);
             gc.setStroke(Color.DARKBLUE);
             gc.setTextAlign(TextAlignment.CENTER);
-            gc.strokeText("GRAND THEFT PONG VI", (double) CANVAS_WIDTH / 2, (double) CANVAS_HEIGHT / 2);
+            gc.strokeText("GRAND THEFT PONG VI", (double) CANVAS_WIDTH / 2,
+                    (double) (CANVAS_HEIGHT / 2) + 10);
             ball.setXPos((double) CANVAS_WIDTH / 2);
             ball.setYPos((double) CANVAS_HEIGHT / 2);
 
@@ -94,11 +102,11 @@ public class Game extends Application {
                 + PLAYER_HEIGHT) ) {
 
             if (ball.getXSpeed() < 0) {
-                ball.setXSpeed(ball.getXSpeed() - 0.5);
-            } else ball.setXSpeed(ball.getXSpeed() + 0.5);
+                ball.setXSpeed(ball.getXSpeed() - 0.8);
+            } else ball.setXSpeed(ball.getXSpeed() + 0.8);
             if (ball.getYSpeed() < 0) {
-                ball.setYSpeed(ball.getYSpeed() - 0.5);
-            } else ball.setYSpeed(ball.getYSpeed() + 0.5);
+                ball.setYSpeed(ball.getYSpeed() - 0.8);
+            } else ball.setYSpeed(ball.getYSpeed() + 0.8);
 
             ball.setXSpeed(ball.getXSpeed() * (-1));
         }
@@ -109,6 +117,7 @@ public class Game extends Application {
 
         player1.draw(gc);
         player2.draw(gc);
+
     }
 
     public static Player getPlayer1() {

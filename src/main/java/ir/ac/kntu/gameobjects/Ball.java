@@ -13,15 +13,14 @@ public class Ball implements GameObject{
 
     public Ball(int xSpeed, int ySpeed) {
         this.radius = GlobalConstants.BALL_RADIUS;
-        this.xPos = GlobalConstants.BALL_FIRST_POS_X;
-        this.yPos = GlobalConstants.BALL_FIRST_POS_Y;
+        this.xPos = GlobalConstants.CANVAS_WIDTH / 2.0;
+        this.yPos = GlobalConstants.CANVAS_HEIGHT / 2.0;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
     }
 
     @Override
     public void draw(GraphicsContext gc) {
-        //TODO complete
         gc.setFill(Color.RED);
         gc.fillOval(xPos, yPos, radius, radius);
     }
