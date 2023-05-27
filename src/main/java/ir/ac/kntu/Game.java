@@ -62,6 +62,7 @@ public class Game extends Application {
     }
 
     public void start(GraphicsContext gc) {
+
         gc.setFill(Color.SILVER);
         gc.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         if (gameState == GameState.RUNNING) {
@@ -109,6 +110,7 @@ public class Game extends Application {
             } else ball.setYSpeed(ball.getYSpeed() + 0.8);
 
             ball.setXSpeed(ball.getXSpeed() * (-1));
+            System.out.println(ball.getXSpeed() + " : " + ball.getYSpeed());
         }
 
         gc.setFont(Font.font(25));
