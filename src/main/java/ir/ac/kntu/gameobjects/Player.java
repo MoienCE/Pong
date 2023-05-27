@@ -12,8 +12,8 @@ public class Player implements GameObject{
     private final double xPos;
     private double yPos;
 
-    public Player(boolean isComputer) {
-        if (isComputer) {
+    public Player(boolean isPlayer2) {
+        if (isPlayer2) {
             this.xPos = GlobalConstants.COMPUTER_FIRST_POS_X;
             this.yPos = GlobalConstants.COMPUTER_FIRST_POS_Y;
         } else {
@@ -48,7 +48,4 @@ public class Player implements GameObject{
         return yPos;
     }
 
-    public void setYPos(double yPos) {
-        this.yPos = yPos;
-    }
 }

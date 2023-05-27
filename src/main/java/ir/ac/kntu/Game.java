@@ -28,8 +28,8 @@ public class Game extends Application {
     private static Player player2;
     private static Ball ball;
     private GameState gameState;
-    private int playerScore = 0;
-    private int computerScore = 0;
+    private int player1Score = 0;
+    private int player2Score = 0;
 
     public static void main(String[] args) {
         player1 = new Player(false);
@@ -62,10 +62,6 @@ public class Game extends Application {
             ball.setYPos(ball.getPositionY() + ball.getYSpeed());
             //computer playing
 
-            player2.setYPos(ball.getPositionY() > player2.getPositionY() + PLAYER_HEIGHT / 2.0 ?
-                    player2.getPositionY() + 3 : player2.getPositionY() - 3);
-
-
             ball.draw(gc);
         } else {
             gc.setFont(Font.font(50));
@@ -80,11 +76,11 @@ public class Game extends Application {
             ball.setYSpeed(new Random().nextInt(2) == 0 ? 1 : -1);
         }
         if (ball.getPositionX() < player1.getPositionX() - PLAYER_WIDTH) {
-            computerScore++;
+            player2Score++;
             gameState = GameState.FINISHED;
         }
         if (ball.getPositionX() > player2.getPositionX() + PLAYER_WIDTH) {
-            playerScore++;
+            player1Score++;
             gameState = GameState.FINISHED;
         }
         if (ball.getPositionY() > CANVAS_HEIGHT - BALL_RADIUS || ball.getPositionY() < 0) {
@@ -109,7 +105,7 @@ public class Game extends Application {
 
         gc.setFont(Font.font(25));
         gc.setStroke(Color.RED);
-        gc.strokeText(playerScore + "\t\t" + computerScore, (double) CANVAS_WIDTH/2, 50);
+        gc.strokeText(player1Score + "\t\t" + player2Score, (double) CANVAS_WIDTH/2, 50);
 
         player1.draw(gc);
         player2.draw(gc);
@@ -117,5 +113,9 @@ public class Game extends Application {
 
     public static Player getPlayer1() {
         return player1;
+    }
+
+    public static Player getPlayer2() {
+        return player2;
     }
 }

@@ -1,6 +1,5 @@
 package ir.ac.kntu.gamecontroller;
 
-import ir.ac.kntu.Game;
 import ir.ac.kntu.constants.Direction;
 import ir.ac.kntu.gameobjects.Player;
 import javafx.scene.input.KeyCode;
@@ -17,14 +16,19 @@ public class PlayerController implements InputManager {
     private PlayerController() {}
 
     @Override
-    public void handlePlayerMovements(KeyCode keyCode) {
-        //TODO set controller
-        Player player = Game.getPlayer1();
+    public void handlePlayerMovements(KeyCode keyCode,
+                                      Player player1, Player player2) {
+        if (keyCode == KeyCode.W) {
+            player1.move(10, Direction.UP);
+        }
+        if (keyCode == KeyCode.S) {
+            player1.move(10, Direction.DOWN);
+        }
         if (keyCode == KeyCode.UP) {
-            player.move(10, Direction.UP);
+            player2.move(10, Direction.UP);
         }
         if (keyCode == KeyCode.DOWN) {
-            player.move(10, Direction.DOWN);
+            player2.move(10, Direction.DOWN);
         }
     }
 }
