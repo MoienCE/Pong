@@ -64,7 +64,7 @@ public class Game extends Application {
             ball.setYPos(ball.getPositionY() + ball.getYSpeed());
 
             //computer playing
-            if (ball.getPositionX() < CANVAS_WIDTH) {
+            if (ball.getPositionX() < CANVAS_WIDTH - CANVAS_WIDTH / 6.5) {
                 computer.setYPos(ball.getPositionY() - PLAYER_HEIGHT / 2.0);
             } else {
                 computer.setYPos(ball.getPositionY() > computer.getPositionY() + PLAYER_HEIGHT / 2.0 ?
