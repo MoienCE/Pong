@@ -24,16 +24,16 @@ import static ir.ac.kntu.constants.GlobalConstants.*;
 
 public class Game extends Application {
 
-    private static Player player;
-    private static Player computer;
+    private static Player player1;
+    private static Player player2;
     private static Ball ball;
     private GameState gameState;
     private int playerScore = 0;
     private int computerScore = 0;
 
     public static void main(String[] args) {
-        player = new Player(false);
-        computer = new Player(true);
+        player1 = new Player(false);
+        player2 = new Player(true);
         ball = new Ball(1, 1);
         launch(args);
     }
@@ -48,7 +48,6 @@ public class Game extends Application {
         tl.setCycleCount(Timeline.INDEFINITE);
         Scene scene = new Scene(new Pane(canvas));
         canvas.setOnMouseClicked(e -> gameState = GameState.RUNNING);
-        //TODO attach EventHandler
         EventHandler.getInstance().attachEventHandlers(scene);
         stage.setScene(scene);
         stage.show();
@@ -59,17 +58,14 @@ public class Game extends Application {
         gc.setFill(Color.SILVER);
         gc.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         if (gameState == GameState.RUNNING) {
-            //TODO make ball moving and draw it
             ball.setXPos(ball.getPositionX() + ball.getXSpeed());
             ball.setYPos(ball.getPositionY() + ball.getYSpeed());
-
             //computer playing
-            if (ball.getPositionX() < CANVAS_WIDTH - CANVAS_WIDTH / 6.5) {
-                computer.setYPos(ball.getPositionY() - PLAYER_HEIGHT / 2.0);
-            } else {
-                computer.setYPos(ball.getPositionY() > computer.getPositionY() + PLAYER_HEIGHT / 2.0 ?
-                        computer.getPositionY() + 1 : computer.getPositionY() - 1);
-            }
+
+            player2.setYPos(ball.getPositionY() > player2.getPositionY() + PLAYER_HEIGHT / 2.0 ?
+                    player2.getPositionY() + 3 : player2.getPositionY() - 3);
+
+
             ball.draw(gc);
         } else {
             gc.setFont(Font.font(50));
@@ -83,11 +79,11 @@ public class Game extends Application {
             ball.setXSpeed(new Random().nextInt(2) == 0 ? 1 : -1);
             ball.setYSpeed(new Random().nextInt(2) == 0 ? 1 : -1);
         }
-        if (ball.getPositionX() < player.getPositionX() - PLAYER_WIDTH) {
+        if (ball.getPositionX() < player1.getPositionX() - PLAYER_WIDTH) {
             computerScore++;
             gameState = GameState.FINISHED;
         }
-        if (ball.getPositionX() > computer.getPositionX() + PLAYER_WIDTH) {
+        if (ball.getPositionX() > player2.getPositionX() + PLAYER_WIDTH) {
             playerScore++;
             gameState = GameState.FINISHED;
         }
@@ -95,10 +91,10 @@ public class Game extends Application {
             ball.setYSpeed(ball.getYSpeed() * (-1));
         }
 
-        if( ((ball.getPositionX() + BALL_RADIUS > computer.getPositionX()) && ball.getPositionY() >=
-                computer.getPositionY() && ball.getPositionY() <= computer.getPositionY() +
-                PLAYER_HEIGHT) || ((ball.getPositionX() < player.getPositionX() + PLAYER_WIDTH) &&
-                ball.getPositionY() >= player.getPositionY() && ball.getPositionY() <= player.getPositionY()
+        if( ((ball.getPositionX() + BALL_RADIUS > player2.getPositionX()) && ball.getPositionY() >=
+                player2.getPositionY() && ball.getPositionY() <= player2.getPositionY() +
+                PLAYER_HEIGHT) || ((ball.getPositionX() < player1.getPositionX() + PLAYER_WIDTH) &&
+                ball.getPositionY() >= player1.getPositionY() && ball.getPositionY() <= player1.getPositionY()
                 + PLAYER_HEIGHT) ) {
 
             if (ball.getXSpeed() < 0) {
@@ -115,11 +111,11 @@ public class Game extends Application {
         gc.setStroke(Color.RED);
         gc.strokeText(playerScore + "\t\t" + computerScore, (double) CANVAS_WIDTH/2, 50);
 
-        player.draw(gc);
-        computer.draw(gc);
+        player1.draw(gc);
+        player2.draw(gc);
     }
 
-    public static Player getPlayer() {
-        return player;
+    public static Player getPlayer1() {
+        return player1;
     }
 }

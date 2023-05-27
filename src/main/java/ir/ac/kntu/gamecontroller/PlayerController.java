@@ -19,7 +19,7 @@ public class PlayerController implements InputManager {
     @Override
     public void handlePlayerMovements(KeyCode keyCode) {
         //TODO set controller
-        Player player = Game.getPlayer();
+        Player player = Game.getPlayer1();
         if (keyCode == KeyCode.UP) {
             player.move(10, Direction.UP);
         }
